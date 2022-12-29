@@ -25,6 +25,7 @@ export const Container = styled.button`
     background-color: #171717;
 
     img {
+      border-radius: 3px;
       object-fit: cover;
     }
   }

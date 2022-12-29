@@ -5,7 +5,7 @@ export default function ProjectCard() {
   return (
     <Container>
       <div>
-        <Image src="" alt="" />
+        <Image src={'https://i.imgur.com/9VL7aBW.jpeg'} alt="" width={300} height={130} />
       </div>
 
       <div>
