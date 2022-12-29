@@ -21,6 +21,10 @@ export const Header = styled.header`
 `
 
 export const Navbar = styled.nav`
+  @media (max-width: 745px) {
+    display: none;
+  }
+
   ul {
     list-style: none;
     display: flex;
@@ -62,16 +66,34 @@ export const TopContainer = styled.section`
   justify-content: space-between;
   margin-top: 7.25rem;
 
+  @media (max-width: 745px) {
+    justify-content: center;
+    img {
+      display: none;
+    }
+  }
+
   > div {
     width: 18rem;
 
-    h2 {
-      color: ${(props) => props.theme.colors['neutral-100']};
-      font-size: 2.25rem;
+    @media (max-width: 745px) {
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h2:nth-child(2) {
-      color: ${(props) => props.theme.colors['red-600']};
+    h2 {
+      color: ${(props) => props.theme.colors['neutral-100']};
+      font-size: 2rem;
+
+      @media (max-width: 745px) {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+      }
+
+      strong {
+        color: ${(props) => props.theme.colors['red-600']};
+      }
     }
 
     > span {
@@ -79,6 +101,11 @@ export const TopContainer = styled.section`
       margin: 1.125rem 0 2.125rem 0;
 
       font-size: 1.125rem;
+
+      @media (max-width: 745px) {
+        font-size: clamp(1rem, 3vw, 1.125rem);
+      }
+
       font-weight: 500;
       color: ${(props) => props.theme.colors['zinc-400']};
     }
@@ -115,13 +142,13 @@ export const AboutmeContainer = styled.section`
   margin-top: 10rem;
 
   h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     color: ${(props) => props.theme.colors['neutral-200']};
   }
 
   > span {
     max-width: 50rem;
-    font-size: 1.125rem;
+    font-size: clamp(0.875rem, 3vw, 1.125rem);
     line-height: 32px;
     text-align: center;
 
@@ -133,7 +160,13 @@ export const AboutmeContainer = styled.section`
   > div {
     display: flex;
     gap: 8.75rem;
+    flex-wrap: wrap;
     margin-top: 6.25rem;
+
+    @media (max-width: 785px) {
+      flex-direction: column;
+      row-gap: 1.5rem;
+    }
   }
 `
 
@@ -177,6 +210,7 @@ export const ProjectContainer = styled.section`
   > div {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
   }

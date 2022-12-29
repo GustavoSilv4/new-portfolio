@@ -67,8 +67,9 @@ export default function Home() {
 
         <TopContainer>
           <div>
-            <h2>Olá, me chamo </h2>
-            <h2>Gustavo Silva &#128516;</h2>
+            <h2>
+              Olá, me chamo <strong>Gustavo Silva &#128516;</strong>
+            </h2>
             <span>Desenvolvedor Front-End</span>
             <div>
               <button>Github</button>

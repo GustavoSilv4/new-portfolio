@@ -20,6 +20,16 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 6px;
   background-color: ${(props) => props.theme.colors['neutral-800']};
 
+  @media (max-width: 397px) {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
   transition: all 0.2s;
 
   &:hover {
