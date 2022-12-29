@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -19,7 +20,6 @@ import {
 
 import logo from '../assets/primarylogo.svg'
 import arrowUp from '../assets/arrowUp.svg'
-import { useState } from 'react'
 
 export default function Home() {
   const [buttonVisible, setButtonVisible] = useState(false)
@@ -41,7 +41,9 @@ export default function Home() {
     })
   }
 
-  window.addEventListener('scroll', toogleVisible)
+  useEffect(() => {
+    window.addEventListener('scroll', toogleVisible)
+  }, [])
 
   return (
     <>
@@ -99,9 +101,9 @@ export default function Home() {
             <SkillCard title="HTML5" />
             <SkillCard title="CSS3" />
             <SkillCard title="Typescript" />
-            <SkillCard title="Styled Components" />
             <SkillCard title="ReactJS" />
             <SkillCard title="NextJS" />
+            <SkillCard title="Styled Components" />
           </div>
         </SkillsContainer>
 
