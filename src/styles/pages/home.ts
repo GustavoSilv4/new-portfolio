@@ -21,14 +21,24 @@ export const Header = styled.header`
 `
 
 export const Navbar = styled.nav`
-  @media (max-width: 745px) {
-    display: none;
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+    @media (min-width: 745px) {
+      display: none;
+    }
   }
 
   ul {
     list-style: none;
     display: flex;
     gap: 2.45rem;
+
+    @media (max-width: 745px) {
+      display: none;
+    }
 
     a {
       font-size: 1.125rem;
@@ -68,6 +78,8 @@ export const TopContainer = styled.section`
 
   @media (max-width: 745px) {
     justify-content: center;
+    margin-top: 3.5rem;
+
     img {
       display: none;
     }
@@ -141,6 +153,10 @@ export const AboutmeContainer = styled.section`
   justify-content: center;
   margin-top: 10rem;
 
+  @media (max-width: 745px) {
+    margin-top: 3.5rem;
+  }
+
   h2 {
     font-size: clamp(1.5rem, 5vw, 2rem);
     color: ${(props) => props.theme.colors['neutral-200']};
@@ -163,7 +179,7 @@ export const AboutmeContainer = styled.section`
     flex-wrap: wrap;
     margin-top: 6.25rem;
 
-    @media (max-width: 785px) {
+    @media (max-width: 745px) {
       flex-direction: column;
       row-gap: 1.5rem;
     }
@@ -178,6 +194,10 @@ export const SkillsContainer = styled.section`
   gap: 1.875rem;
 
   margin-top: 7.5rem;
+
+  @media (max-width: 745px) {
+    margin-top: 3.5rem;
+  }
 
   h2 {
     font-size: 2rem;
@@ -201,6 +221,10 @@ export const ProjectContainer = styled.section`
   gap: 1.875rem;
 
   margin-top: 7.5rem;
+
+  @media (max-width: 745px) {
+    margin-top: 3.5rem;
+  }
 
   h2 {
     font-size: 2rem;
@@ -236,6 +260,10 @@ export const FooterContainer = styled.footer`
   justify-content: center;
   padding: 1.25rem;
   margin-top: 12.75rem;
+
+  @media (max-width: 745px) {
+    margin-top: 5rem;
+  }
 
   h2 {
     font-size: 1rem;
