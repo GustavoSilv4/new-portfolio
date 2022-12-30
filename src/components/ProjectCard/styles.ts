@@ -40,6 +40,7 @@ export const Container = styled.button`
 
     span {
       display: block;
+      text-align: start;
       font-size: 0.875rem;
       color: ${(props) => props.theme.colors['zinc-400']};
     }
