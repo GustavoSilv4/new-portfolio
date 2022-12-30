@@ -5,24 +5,17 @@ import Image from 'next/image'
 import AboutmeCircle from '../components/AboutmeCircle'
 import ProjectCard from '../components/ProjectCard'
 import SkillCard from '../components/SkillCard'
+import Dropdown from '../components/Dropdown'
 
-import {
-  AboutmeContainer,
-  ButtonBackonTop,
-  ContentContainer,
-  FooterContainer,
-  Header,
-  Navbar,
-  ProjectContainer,
-  SkillsContainer,
-  TopContainer,
-} from '../styles/pages/home'
+import * as S from '../styles/pages/home'
 
 import logo from '../assets/primarylogo.svg'
 import arrowUp from '../assets/arrowUp.svg'
+import menu from '../assets/menuhamburguer.svg'
 
 export default function Home() {
   const [buttonVisible, setButtonVisible] = useState(false)
+  const [isVisibleDropdown, setIsVisibleDropdown] = useState(false)
 
   function toogleVisible() {
     const scrolled = document.documentElement.scrollTop
@@ -47,10 +40,16 @@ export default function Home() {
 
   return (
     <>
-      <ContentContainer>
-        <Header>
+      <S.ContentContainer>
+        <S.Header>
           <h1>Portfólio</h1>
-          <Navbar>
+
+          <S.Navbar>
+            <button onClick={() => setIsVisibleDropdown(!isVisibleDropdown)}>
+              <Image src={menu} alt="" />
+            </button>
+            {isVisibleDropdown && <Dropdown />}
+
             <ul>
               <li>
                 <Link href="#aboutme">Sobre mim</Link>
@@ -62,10 +61,10 @@ export default function Home() {
                 <Link href="#projects">Projetos</Link>
               </li>
             </ul>
-          </Navbar>
-        </Header>
+          </S.Navbar>
+        </S.Header>
 
-        <TopContainer>
+        <S.TopContainer>
           <div>
             <h2>
               Olá, me chamo <strong>Gustavo Silva &#128516;</strong>
@@ -77,9 +76,9 @@ export default function Home() {
             </div>
           </div>
           <Image src={logo} width={300} height={250} alt="" />
-        </TopContainer>
+        </S.TopContainer>
 
-        <AboutmeContainer id="aboutme">
+        <S.AboutmeContainer id="aboutme">
           <h2>Sobre mim</h2>
           <span>
             Olá, me chamo Gustavo, estudo programação Front-end com foco em ReactJs há mais de 6 meses, atualmente
@@ -93,9 +92,9 @@ export default function Home() {
             <AboutmeCircle type="email" />
             <AboutmeCircle type="insta" />
           </div>
-        </AboutmeContainer>
+        </S.AboutmeContainer>
 
-        <SkillsContainer id="skills">
+        <S.SkillsContainer id="skills">
           <h2>Minhas skills</h2>
 
           <div>
@@ -106,9 +105,9 @@ export default function Home() {
             <SkillCard title="NextJS" />
             <SkillCard title="Styled Components" />
           </div>
-        </SkillsContainer>
+        </S.SkillsContainer>
 
-        <ProjectContainer id="projects">
+        <S.ProjectContainer id="projects">
           <h2>Projetos</h2>
 
           <div>
@@ -119,18 +118,18 @@ export default function Home() {
             <ProjectCard />
             <ProjectCard />
           </div>
-        </ProjectContainer>
+        </S.ProjectContainer>
 
-        <ButtonBackonTop onClick={scrollToTop} style={{ display: buttonVisible ? 'block' : 'none' }}>
+        <S.ButtonBackonTop onClick={scrollToTop} style={{ display: buttonVisible ? 'block' : 'none' }}>
           <Image src={arrowUp} alt="" />
-        </ButtonBackonTop>
-      </ContentContainer>
+        </S.ButtonBackonTop>
+      </S.ContentContainer>
 
-      <FooterContainer>
+      <S.FooterContainer>
         <h2>
-          &copy; 2023 - <strong>Gustavo Silva</strong>
+          &copy; 2023 - Feito com ❤️ por <strong>Gustavo Silva</strong>
         </h2>
-      </FooterContainer>
+      </S.FooterContainer>
     </>
   )
 }
