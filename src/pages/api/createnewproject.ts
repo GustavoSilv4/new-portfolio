@@ -12,6 +12,7 @@ export default async function handler(
     repository,
     preview,
   } = req.body
+
   const authorizationCode = req.headers.authorization
 
   if (req.method !== 'POST') {
@@ -19,7 +20,7 @@ export default async function handler(
   }
 
   if (authorizationCode !== process.env.AUTHORIZATION_REQ) {
-    res.status(401).json({ message: 'Código autorização incorreto!' })
+    return res.status(401).json({ message: 'Código autorização incorreto!' })
   }
 
   const projects = await prisma.projects.create({
@@ -32,5 +33,5 @@ export default async function handler(
     },
   })
 
-  res.status(201).json({ projects })
+  return res.status(201).json({ projects })
 }

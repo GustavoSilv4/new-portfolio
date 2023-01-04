@@ -19,11 +19,11 @@ export default async function handler(
   const authorizationCode = req.headers.authorization
 
   if (req.method !== 'POST') {
-    res.status(405).end()
+    return res.status(405).end()
   }
 
   if (authorizationCode !== process.env.AUTHORIZATION_REQ) {
-    res.status(401).json({ message: 'Código autorização incorreto!' })
+    return res.status(401).json({ message: 'Código autorização incorreto!' })
   }
 
   //   const projects = await prisma.techs.createMany({  // Não consigo utilizar este comando poís a database que estou utilizando SQLite o prisma não me permite, mas quando for alterado para MYSql será possível
@@ -43,5 +43,5 @@ export default async function handler(
     })
   )
 
-  res.status(201).end()
+  return res.status(201).end()
 }
