@@ -23,10 +23,11 @@ export const Container = styled.button`
     width: 18.75rem;
     height: 8.125rem;
     background-color: #171717;
+    border-radius: 3px;
 
     img {
-      border-radius: 3px;
       object-fit: cover;
+      overflow: hidden;
     }
   }
 

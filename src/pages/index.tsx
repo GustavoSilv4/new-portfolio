@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
+import { api } from '../lib/axios'
+
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -13,7 +16,22 @@ import logo from '../assets/primarylogo.svg'
 import arrowUp from '../assets/arrowUp.svg'
 import menu from '../assets/menuhamburguer.svg'
 
-export default function Home() {
+interface HomeProps {
+  projects: {
+    id: string
+    project_name: string
+    image_url: string
+    description: string
+    repository: string
+    preview_link: string
+    Techs: {
+      id: string
+      name: string
+    }[]
+  }[]
+}
+
+export default function Home({ projects }: HomeProps) {
   const [buttonVisible, setButtonVisible] = useState(false)
   const [isVisibleDropdown, setIsVisibleDropdown] = useState(false)
 
@@ -81,10 +99,12 @@ export default function Home() {
         <S.AboutmeContainer id="aboutme">
           <h2>Sobre mim</h2>
           <span>
-            Olá, me chamo Gustavo, estudo programação Front-end com foco em ReactJs há mais de 6 meses, atualmente
-            continuo meus estudo pela plataforma Ignite da Rocketseat. Eu gosto de resolver desafios com cada ferramenta
-            nova que aprendo todos os dias. Nesse tempo aprendi e absorvir muita coisa e espero poder colocar em pratica
-            além dos projetos pessoais, mas para o mundo real.
+            Olá, me chamo Gustavo, estudo programação Front-end com foco em
+            ReactJs há mais de 6 meses, atualmente continuo meus estudo pela
+            plataforma Ignite da Rocketseat. Eu gosto de resolver desafios com
+            cada ferramenta nova que aprendo todos os dias. Nesse tempo aprendi
+            e absorvir muita coisa e espero poder colocar em pratica além dos
+            projetos pessoais, mas para o mundo real.
           </span>
 
           <div>
@@ -111,16 +131,23 @@ export default function Home() {
           <h2>Projetos</h2>
 
           <div>
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                imageUrl={project.image_url}
+                projectName={project.project_name}
+                description={project.description}
+                previewLink={project.preview_link}
+                repository={project.repository}
+                techs={project.Techs}
+              />
+            ))}
           </div>
         </S.ProjectContainer>
 
-        <S.ButtonBackonTop onClick={scrollToTop} style={{ display: buttonVisible ? 'block' : 'none' }}>
+        <S.ButtonBackonTop
+          onClick={scrollToTop}
+          style={{ display: buttonVisible ? 'block' : 'none' }}>
           <Image src={arrowUp} alt="" />
         </S.ButtonBackonTop>
       </S.ContentContainer>
@@ -132,4 +159,17 @@ export default function Home() {
       </S.FooterContainer>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await api.get('/getprojects')
+
+  const projects = response.data.projects
+
+  return {
+    props: {
+      projects,
+    },
+    revalidate: 60 * 60 * 24 * 5, // 5 days
+  }
 }

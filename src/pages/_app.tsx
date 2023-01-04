@@ -9,8 +9,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Portifólio - Gustavo Silva</title>
-        <meta name="description" content="Um portifólio para ficar registrado projetos feitos por mim" />
+        <title>Portfólio - Gustavo Silva</title>
+        <meta
+          name="description"
+          content="Portifólio para ficar registrado projetos feitos por mim"
+        />
       </Head>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />

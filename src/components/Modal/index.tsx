@@ -3,36 +3,61 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import close from '../../assets/close.svg'
+import { TechProps } from '../ProjectCard'
 
-import { ButtonContainer, Container, Content, HeaderModal, Overlay, Title } from './styles'
+import {
+  ButtonContainer,
+  Container,
+  Content,
+  HeaderModal,
+  Overlay,
+  Title,
+} from './styles'
 
-export default function Modal() {
+interface ModalProps {
+  projectName: string
+  description: string
+  previewLink: string
+  repository: string
+
+  techs: TechProps[]
+}
+
+export default function Modal({
+  projectName,
+  description,
+  previewLink,
+  repository,
+  techs,
+}: ModalProps) {
   return (
     <Dialog.Portal>
       <Overlay />
       <Content>
         <HeaderModal>
-          <Title>Github-Blog</Title>
+          <Title>{projectName}</Title>
           <Dialog.Close>
             <Image src={close} alt="" />
           </Dialog.Close>
         </HeaderModal>
         <Container>
-          <p>
-            Esse projeto consistiu em site para delivery de uma cafeteria, projeto proposto no segundo módulo do curso
-            ignite da Rocketseat, para colocarmos em prática tudo que nós aprendemos neste módulo.
-          </p>
+          <p>{description}</p>
 
-          <span>Tecnologias: ReactJS, Typescript, Context API, Styled-Components</span>
+          <span>
+            Tecnologias:
+            {techs.map((tech, index) =>
+              index === techs.length - 1 ? ` ${tech.name}.` : ` ${tech.name}, `
+            )}
+          </span>
 
           <ButtonContainer>
             <button>
-              <Link href="https://coffee-delivery.gustavosilv4.com.br" target="_blank" rel="noreferrer">
+              <Link href={previewLink} target="_blank">
                 Visualizar
               </Link>
             </button>
             <button>
-              <Link href="https://coffee-delivery.gustavosilv4.com.br" target="_blank" rel="noreferrer">
+              <Link href={repository} target="_blank">
                 Repositório
               </Link>
             </button>
