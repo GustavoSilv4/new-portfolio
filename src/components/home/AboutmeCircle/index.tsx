@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import smile from '../../assets/smile.svg'
-import mail from '../../assets/mail.svg'
-import instagram from '../../assets/instagram.svg'
+import smile from '../../../assets/smile.svg'
+import mail from '../../../assets/mail.svg'
+import instagram from '../../../assets/instagram.svg'
 
 import { Container } from './styles'
 

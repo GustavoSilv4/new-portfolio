@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import close from '../../assets/close.svg'
+import close from '../../../assets/close.svg'
 import { TechProps } from '../ProjectCard'
 
 import {

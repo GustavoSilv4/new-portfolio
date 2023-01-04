@@ -134,8 +134,12 @@ export const TopContainer = styled.section`
         border-radius: 6px;
         border: 1px solid #262626;
 
-        color: ${(props) => props.theme.colors.white};
         background: ${(props) => props.theme.colors['neutral-900']};
+
+        a {
+          text-decoration: none;
+          color: ${(props) => props.theme.colors.white};
+        }
 
         transition: all 0.2s;
 

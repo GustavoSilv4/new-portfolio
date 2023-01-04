@@ -5,10 +5,10 @@ import { api } from '../lib/axios'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import AboutmeCircle from '../components/AboutmeCircle'
-import ProjectCard from '../components/ProjectCard'
-import SkillCard from '../components/SkillCard'
-import Dropdown from '../components/Dropdown'
+import AboutmeCircle from '../components/home/AboutmeCircle'
+import ProjectCard from '../components/home/ProjectCard'
+import SkillCard from '../components/home/SkillCard'
+import Dropdown from '../components/home/Dropdown'
 
 import * as S from '../styles/pages/home'
 
@@ -89,11 +89,25 @@ export default function Home({ projects }: HomeProps) {
             </h2>
             <span>Desenvolvedor Front-End</span>
             <div>
-              <button>Github</button>
-              <button>LinkedIn</button>
+              <button>
+                <a
+                  href="https://github.com/GustavoSilv4"
+                  target="_blank"
+                  rel="noreferrer">
+                  Github
+                </a>
+              </button>
+              <button>
+                <a
+                  href="https://www.linkedin.com/in/gustavo-silva-3b7a15234/"
+                  target="_blank"
+                  rel="noreferrer">
+                  Linkedin
+                </a>
+              </button>
             </div>
           </div>
-          <Image src={logo} width={300} height={250} alt="" />
+          <Image src={logo} width={300} height={250} alt="" priority />
         </S.TopContainer>
 
         <S.AboutmeContainer id="aboutme">
