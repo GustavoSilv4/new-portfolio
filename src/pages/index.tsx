@@ -15,21 +15,9 @@ import * as S from '../styles/pages/home'
 import logo from '../assets/primarylogo.svg'
 import arrowUp from '../assets/arrowUp.svg'
 import menu from '../assets/menuhamburguer.svg'
+import { getProjects } from '../@types/getProjects'
 
-interface HomeProps {
-  projects: {
-    id: string
-    project_name: string
-    image_url: string
-    description: string
-    repository: string
-    preview_link: string
-    Techs: {
-      id: string
-      name: string
-    }[]
-  }[]
-}
+interface HomeProps extends getProjects {}
 
 export default function Home({ projects }: HomeProps) {
   const [buttonVisible, setButtonVisible] = useState(false)
