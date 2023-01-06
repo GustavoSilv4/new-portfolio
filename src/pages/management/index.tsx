@@ -1,10 +1,15 @@
 import * as Dialog from '@radix-ui/react-dialog'
+import { GetServerSideProps } from 'next'
+import { getProjects } from '../../@types/getProjects'
 
 import ModalManagerProject from '../../components/management/ModalManagerProject'
 import ModalNewProject from '../../components/management/ModalNewProject'
+import { api } from '../../lib/axios'
 import { Container } from '../../styles/pages/management'
 
-export default function Management() {
+interface ManagementProps extends getProjects {}
+
+export default function Management({ projects }: ManagementProps) {
   return (
     <Container>
       <Dialog.Root>
@@ -18,8 +23,20 @@ export default function Management() {
         <Dialog.Trigger asChild>
           <button>Gerenciar projetos</button>
         </Dialog.Trigger>
-        <ModalManagerProject />
+        <ModalManagerProject projects={projects} />
       </Dialog.Root>
     </Container>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await api.get('getprojects')
+
+  const projects = response.data.projects
+
+  return {
+    props: {
+      projects,
+    },
+  }
 }
