@@ -156,7 +156,7 @@ export default function Home({ projects }: HomeProps) {
 
       <S.FooterContainer>
         <h2>
-          &copy; 2023 - Feito com ❤️ por <strong>Gustavo Silva</strong>
+          &copy; 2023 - Feito por <strong>Gustavo Silva</strong>
         </h2>
       </S.FooterContainer>
     </>
