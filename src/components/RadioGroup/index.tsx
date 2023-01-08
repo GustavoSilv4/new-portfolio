@@ -33,7 +33,7 @@ export function RadioGroup({ onValueChange, value }: RadioGroupProps) {
         <S.Item value="deletetechs" id="deletetechs">
           <S.Indicator />
         </S.Item>
-        <label htmlFor="deletetechs">Deletar Tecnologia</label>
+        <label htmlFor="deletetechs">Deletar Tecnologias</label>
       </div>
     </S.Root>
   )
