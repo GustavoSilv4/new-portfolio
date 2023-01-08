@@ -3,10 +3,8 @@ import { prisma } from '../../lib/prisma'
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: {
-    techs: {
-      name: string
-      project_id: string
-    }[]
+    projectId: string
+    technologyList: string[]
   }
 }
 
@@ -14,7 +12,7 @@ export default async function handler(
   req: ExtendedNextApiRequest,
   res: NextApiResponse
 ) {
-  const { techs } = req.body
+  const { projectId, technologyList } = req.body
 
   const authorizationCode = req.headers.authorization
 
@@ -33,11 +31,11 @@ export default async function handler(
   //   })
 
   await Promise.all(
-    techs.map((tech) => {
+    technologyList.map((tech) => {
       return prisma.techs.create({
         data: {
-          name: tech.name,
-          projects_id: tech.project_id,
+          name: tech,
+          projects_id: projectId,
         },
       })
     })
