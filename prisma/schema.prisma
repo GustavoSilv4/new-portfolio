@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Projects {
@@ -29,5 +30,6 @@ model Techs {
   projects    Projects @relation(fields: [projects_id], references: [id])
   projects_id String
 
+  @@index([projects_id])
   @@map("techs")
 }
