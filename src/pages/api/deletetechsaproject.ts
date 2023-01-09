@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import NextCors from 'nextjs-cors'
 import { prisma } from '../../lib/prisma'
 
 export default async function handler(
@@ -8,6 +9,14 @@ export default async function handler(
   if (req.method !== 'DELETE') {
     return res.status(405).end()
   }
+
+  await NextCors(req, res, {
+    // Options
+    methods: ['DELETE'],
+    origin: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
 
   const authorizationCode = req.headers.authorization
 

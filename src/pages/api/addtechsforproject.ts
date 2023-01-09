@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import NextCors from 'nextjs-cors'
 import { prisma } from '../../lib/prisma'
 
 interface ExtendedNextApiRequest extends NextApiRequest {
@@ -12,13 +13,21 @@ export default async function handler(
   req: ExtendedNextApiRequest,
   res: NextApiResponse
 ) {
-  const { projectId, technologyList } = req.body
-
-  const authorizationCode = req.headers.authorization
-
   if (req.method !== 'POST') {
     return res.status(405).end()
   }
+
+  await NextCors(req, res, {
+    // Options
+    methods: ['POST'],
+    origin: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+
+  const { projectId, technologyList } = req.body
+
+  const authorizationCode = req.headers.authorization
 
   if (authorizationCode !== process.env.AUTHORIZATION_REQ) {
     return res.status(401).json({ message: 'Código autorização incorreto!' })
