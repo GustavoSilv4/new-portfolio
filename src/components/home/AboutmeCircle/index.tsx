@@ -29,7 +29,7 @@ export default function AboutmeCircle({ type }: AboutMeProps) {
       {type === 'email' && (
         <div>
           <h3>E-mail</h3>
-          <span>contato@gustavosil4.com.br</span>
+          <span>contato@gustavosilv4.com.br</span>
         </div>
       )}
 
