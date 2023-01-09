@@ -11,9 +11,14 @@ const createNewProjectFormSchema = z.object({
   projectName: z
     .string()
     .min(1, { message: 'Necessário dá um nome para o projeto!' }),
-  imagePreview: z.string().min(1, {
-    message: 'Necessário uma imagem para o projeto!',
-  }),
+  imagePreview: z
+    .string()
+    .min(1, {
+      message: 'Necessário uma imagem para o projeto!',
+    })
+    .startsWith('https://imgur.com/', {
+      message: 'Image necessariamente precisa está hospedada no imgur',
+    }),
   description: z.string().min(1, {
     message: 'Necessário uma descrição para o projeto!',
   }),
@@ -39,6 +44,9 @@ export default function ModalNewProject() {
     formState: { errors, isSubmitting },
   } = useForm<CreateNewProjectFormData>({
     resolver: zodResolver(createNewProjectFormSchema),
+    defaultValues: {
+      imagePreview: 'https://imgur.com/',
+    },
   })
 
   async function handleCreateNewProject(data: CreateNewProjectFormData) {
@@ -84,6 +92,7 @@ export default function ModalNewProject() {
             <input
               type="text"
               id="image-preview"
+              placeholder="https://imgur.com/"
               {...register('imagePreview')}
             />
             <S.FormError>{errors.imagePreview?.message}</S.FormError>
