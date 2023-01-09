@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
+import { prisma } from '../lib/prisma'
 import { NextSeo } from 'next-seo'
-import { api } from '../lib/axios'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -139,17 +139,18 @@ export default function Home({ projects }: HomeProps) {
           <h2>Projetos</h2>
 
           <div>
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                imageUrl={project.image_url}
-                projectName={project.project_name}
-                description={project.description}
-                previewLink={project.preview_link}
-                repository={project.repository}
-                techs={project.Techs}
-              />
-            ))}
+            {projects &&
+              projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  imageUrl={project.image_url}
+                  projectName={project.project_name}
+                  description={project.description}
+                  previewLink={project.preview_link}
+                  repository={project.repository}
+                  techs={project.Techs}
+                />
+              ))}
           </div>
         </S.ProjectContainer>
 
@@ -170,9 +171,11 @@ export default function Home({ projects }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await api.get('/getprojects')
-
-  const projects = response.data.projects
+  const projects = await prisma.projects.findMany({
+    include: {
+      Techs: true,
+    },
+  })
 
   return {
     props: {
