@@ -50,6 +50,20 @@ export default function Home({ projects }: HomeProps) {
       <NextSeo
         title="Portfólio - Gustavo Silva"
         description="Portifólio para demonstrar meu progresso, projetos e habilidades como desenvolvedor front-end."
+        openGraph={{
+          type: 'website',
+          locale: 'pt_BR',
+          title: 'Portfólio - Gustavo Silva',
+          description:
+            'Portifólio para demonstrar meu progresso, projetos e habilidades como desenvolvedor front-end.',
+          url: 'https://www.gustavosilv4.com.br',
+          siteName: 'Portfólio DEV - Gustavo Silva',
+        }}
+        twitter={{
+          handle: '@GustavoSBRK',
+          site: 'https://www.gustavosilv4.com.br',
+        }}
+        canonical="https://www.gustavosilv4.com.br"
       />
 
       <S.ContentContainer>
