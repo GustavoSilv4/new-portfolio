@@ -245,7 +245,7 @@ export const ProjectContainer = styled.section`
 `
 
 export const ButtonBackonTop = styled.button`
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 65px;
   right: 30px;
@@ -254,8 +254,9 @@ export const ButtonBackonTop = styled.button`
   outline: none;
   background-color: ${(props) => props.theme.colors['red-600']};
   cursor: pointer;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 50px;
+  line-height: 0;
 `
 
 export const FooterContainer = styled.footer`
