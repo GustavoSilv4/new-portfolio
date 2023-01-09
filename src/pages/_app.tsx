@@ -1,3 +1,4 @@
+import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider } from 'styled-components'
@@ -9,12 +10,6 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Portfólio - Gustavo Silva</title>
-        <meta
-          name="description"
-          content="Portifólio para ficar registrado projetos feitos por mim"
-        />
-
         <link
           rel="icon"
           type="image/png"
@@ -36,6 +31,15 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ThemeProvider theme={defaultTheme}>
+        <DefaultSeo
+          openGraph={{
+            type: 'website',
+            locale: 'pt_BR',
+            url: 'https://www.gustavosilv4.com.br',
+            siteName: 'Portfólio DEV - Gustavo Silva',
+          }}
+        />
+
         <GlobalStyles />
         <Component {...pageProps} />
       </ThemeProvider>

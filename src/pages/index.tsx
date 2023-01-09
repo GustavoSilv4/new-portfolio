@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
+import { NextSeo } from 'next-seo'
 import { api } from '../lib/axios'
 
 import Link from 'next/link'
@@ -46,6 +47,11 @@ export default function Home({ projects }: HomeProps) {
 
   return (
     <>
+      <NextSeo
+        title="Portfólio - Gustavo Silva"
+        description="Portifólio para demonstrar meu progresso, projetos e habilidades como desenvolvedor front-end."
+      />
+
       <S.ContentContainer>
         <S.Header>
           <h1>Portfólio</h1>

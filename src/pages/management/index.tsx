@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { GetServerSideProps } from 'next'
+import { NextSeo } from 'next-seo'
 import { getProjects } from '../../@types/getProjects'
 
 import ModalManagerProject from '../../components/management/ModalManagerProject'
@@ -11,21 +12,25 @@ interface ManagementProps extends getProjects {}
 
 export default function Management({ projects }: ManagementProps) {
   return (
-    <Container>
-      <Dialog.Root>
-        <Dialog.Trigger asChild>
-          <button>Cria novo projeto</button>
-        </Dialog.Trigger>
-        <ModalNewProject />
-      </Dialog.Root>
+    <>
+      <NextSeo title="Gerenciamento de Projetos - Gustavo Silva" noindex />
 
-      <Dialog.Root>
-        <Dialog.Trigger asChild>
-          <button>Gerenciar projetos</button>
-        </Dialog.Trigger>
-        <ModalManagerProject projects={projects} />
-      </Dialog.Root>
-    </Container>
+      <Container>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <button>Cria novo projeto</button>
+          </Dialog.Trigger>
+          <ModalNewProject />
+        </Dialog.Root>
+
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <button>Gerenciar projetos</button>
+          </Dialog.Trigger>
+          <ModalManagerProject projects={projects} />
+        </Dialog.Root>
+      </Container>
+    </>
   )
 }
 
