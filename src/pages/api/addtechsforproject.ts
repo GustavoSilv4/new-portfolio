@@ -33,22 +33,25 @@ export default async function handler(
     return res.status(401).json({ message: 'Código autorização incorreto!' })
   }
 
-  //   const projects = await prisma.techs.createMany({  // Não consigo utilizar este comando poís a database que estou utilizando SQLite o prisma não me permite, mas quando for alterado para MYSql será possível
-  //     data: {
+  await prisma.techs.createMany({
+    data: technologyList.map((tech) => {
+      return {
+        name: tech,
+        projects_id: projectId,
+      }
+    }),
+  })
 
-  //     },
+  // await Promise.all(
+  //   technologyList.map((tech) => {
+  //     return prisma.techs.create({
+  //       data: {
+  //         name: tech,
+  //         projects_id: projectId,
+  //       },
+  //     })
   //   })
-
-  await Promise.all(
-    technologyList.map((tech) => {
-      return prisma.techs.create({
-        data: {
-          name: tech,
-          projects_id: projectId,
-        },
-      })
-    })
-  )
+  // )
 
   return res.status(201).end()
 }
