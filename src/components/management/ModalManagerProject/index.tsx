@@ -9,6 +9,7 @@ import { AxiosError } from 'axios'
 import { getProjects } from '../../../@types/getProjects'
 import { RadioGroup } from '../../RadioGroup'
 import { TagBox } from '../TagBox'
+import { toast } from 'react-toastify'
 
 const createNewProjectFormSchema = z.object({
   projectList: z.string().min(1, {
@@ -79,9 +80,22 @@ export default function ModalManagementProject({ projects }: ModalProps) {
       technologyList,
     }
 
+    const toastPending = toast(`Aguarde um instante...`, {
+      position: 'top-right',
+      autoClose: false,
+      theme: 'dark',
+    })
+
     try {
       if (typeSelected === 'editproject') {
         await api.put('/editaproject', editProjectData, config)
+
+        toast.update(toastPending, {
+          render: `Projeto editado com sucesso`,
+          type: toast.TYPE.SUCCESS,
+          position: 'top-right',
+          autoClose: 3000,
+        })
 
         setErrorFetch(null)
         return
@@ -97,6 +111,13 @@ export default function ModalManagementProject({ projects }: ModalProps) {
           },
         })
 
+        toast.update(toastPending, {
+          render: `Projeto deletado com sucesso`,
+          type: toast.TYPE.SUCCESS,
+          position: 'top-right',
+          autoClose: 3000,
+        })
+
         setErrorFetch(null)
       }
 
@@ -107,6 +128,13 @@ export default function ModalManagementProject({ projects }: ModalProps) {
           )
         }
         await api.post('/addtechsforproject', addTechs, config)
+
+        toast.update(toastPending, {
+          render: `Tecnologias adicionada com sucesso`,
+          type: toast.TYPE.SUCCESS,
+          position: 'top-right',
+          autoClose: 3000,
+        })
 
         setTechnologyList([])
         setErrorFetch(null)
@@ -122,10 +150,24 @@ export default function ModalManagementProject({ projects }: ModalProps) {
           },
         })
 
+        toast.update(toastPending, {
+          render: `Tecnologias deletadas com sucesso`,
+          type: toast.TYPE.SUCCESS,
+          position: 'top-right',
+          autoClose: 3000,
+        })
+
         setErrorFetch(null)
       }
     } catch (err) {
       if (err instanceof AxiosError && err.response?.data.message) {
+        toast.update(toastPending, {
+          render: `Ocorreu um error!`,
+          type: toast.TYPE.ERROR,
+          position: 'top-right',
+          autoClose: 3000,
+        })
+
         setErrorFetch(err.response.data.message)
       }
     } finally {

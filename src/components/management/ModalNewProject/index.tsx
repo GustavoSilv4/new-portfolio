@@ -6,6 +6,7 @@ import * as S from './styles'
 import { useState } from 'react'
 import { api } from '../../../lib/axios'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 const createNewProjectFormSchema = z.object({
   projectName: z
@@ -64,12 +65,31 @@ export default function ModalNewProject() {
       preview: data.preview,
     }
 
+    const toastPending = toast(`Aguarde um instante...`, {
+      position: 'top-right',
+      autoClose: false,
+      theme: 'dark',
+    })
+
     try {
       await api.post('/createnewproject', newProject, config)
+
+      toast.update(toastPending, {
+        render: `Projeto criado com sucesso`,
+        type: toast.TYPE.SUCCESS,
+        position: 'top-right',
+        autoClose: 3000,
+      })
 
       setErrorFetch(null)
     } catch (err) {
       if (err instanceof AxiosError && err.response?.data.message) {
+        toast.update(toastPending, {
+          render: `Ocorreu um error!`,
+          type: toast.TYPE.ERROR,
+          position: 'top-right',
+          autoClose: 3000,
+        })
         setErrorFetch(err.response.data.message)
       }
     }

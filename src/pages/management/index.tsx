@@ -7,6 +7,8 @@ import ModalManagerProject from '../../components/management/ModalManagerProject
 import ModalNewProject from '../../components/management/ModalNewProject'
 import { prisma } from '../../lib/prisma'
 import { Container } from '../../styles/pages/management'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 interface ManagementProps extends getProjects {}
 
@@ -30,6 +32,18 @@ export default function Management({ projects }: ManagementProps) {
           <ModalManagerProject projects={projects} />
         </Dialog.Root>
       </Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   )
 }
