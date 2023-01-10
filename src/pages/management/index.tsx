@@ -5,7 +5,7 @@ import { getProjects } from '../../@types/getProjects'
 
 import ModalManagerProject from '../../components/management/ModalManagerProject'
 import ModalNewProject from '../../components/management/ModalNewProject'
-import { api } from '../../lib/axios'
+import { prisma } from '../../lib/prisma'
 import { Container } from '../../styles/pages/management'
 
 interface ManagementProps extends getProjects {}
@@ -35,9 +35,11 @@ export default function Management({ projects }: ManagementProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await api.get('getprojects')
-
-  const projects = response.data.projects
+  const projects = await prisma.projects.findMany({
+    include: {
+      Techs: true,
+    },
+  })
 
   return {
     props: {
