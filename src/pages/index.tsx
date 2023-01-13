@@ -97,22 +97,14 @@ export default function Home({ projects }: HomeProps) {
             </h2>
             <span>Desenvolvedor Front-End</span>
             <div>
-              <button>
-                <a
-                  href="https://github.com/GustavoSilv4"
-                  target="_blank"
-                  rel="noreferrer">
-                  Github
-                </a>
-              </button>
-              <button>
-                <a
-                  href="https://www.linkedin.com/in/gustavo-silva-3b7a15234/"
-                  target="_blank"
-                  rel="noreferrer">
-                  Linkedin
-                </a>
-              </button>
+              <Link href="https://github.com/GustavoSilv4" target="_blank">
+                Github
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/gustavo-silva-3b7a15234/"
+                target="_blank">
+                Linkedin
+              </Link>
             </div>
           </div>
           <Image src={logo} width={300} height={250} alt="" priority />

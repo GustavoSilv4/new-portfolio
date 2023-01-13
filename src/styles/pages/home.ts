@@ -126,20 +126,21 @@ export const TopContainer = styled.section`
       display: flex;
       gap: 0.875rem;
 
-      button {
+      a {
         cursor: pointer;
         width: 9.75rem;
         padding: 0.75rem 2rem;
+        text-decoration: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         border-radius: 6px;
         border: 1px solid #262626;
 
+        color: ${(props) => props.theme.colors.white};
         background: ${(props) => props.theme.colors['neutral-900']};
-
-        a {
-          text-decoration: none;
-          color: ${(props) => props.theme.colors.white};
-        }
 
         transition: all 0.2s;
 
