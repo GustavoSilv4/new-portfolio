@@ -29,6 +29,10 @@ export default function App({ Component, pageProps }: AppProps) {
           sizes="192x192"
           href="/android-chrome-192x192.png"
         />
+        <meta
+          name="google-site-verification"
+          content="qePw2yYNKJIdKw9zcbl7z8bg44TUdszTaRu7LeA3E98"
+        />
       </Head>
       <ThemeProvider theme={defaultTheme}>
         <DefaultSeo
